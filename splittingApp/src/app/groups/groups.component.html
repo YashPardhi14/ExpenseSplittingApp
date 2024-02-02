@@ -1,0 +1,11 @@
+
+<div *ngIf="groups">
+    <mat-toolbar class="decorated-heading">
+        <h2>All Groups</h2>
+      </mat-toolbar>
+      
+    <div class="groups-grid"> 
+        <app-group-card [group]="group" *ngFor="let group of groups"></app-group-card>
+    </div>
+  </div>
+  <p *ngIf="!groups">Loading users...</p>
