@@ -4,6 +4,7 @@ import { Users } from './users';
 import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map, of } from 'rxjs';
 import { Groups } from './groups';
+import { Expenses } from './expenses';
 
 
 @Injectable({
@@ -16,6 +17,8 @@ export class ExpenseService {
 USER_API="http://localhost:8080/api/users";
 
 GROUP_API="http://localhost:8080/api/groups";
+
+EXPENSE_API="http://localhost:8080/api/expenses";
 
 
 
@@ -42,5 +45,18 @@ fetchGroups():Observable<Groups[]>{
   )
 
 }
+
+fetchExpenses(): Observable<Expenses[]> {
+  
+  return this.http.get<Expenses[]>(this.EXPENSE_API)
+    .pipe(
+      catchError(error => {
+        console.error('Error fetching expenses:', error);
+        return of([]);
+      })
+    );
+}
+
+
 
 }

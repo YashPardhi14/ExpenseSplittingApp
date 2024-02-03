@@ -1,0 +1,23 @@
+.group-card{
+
+    margin: 20px;
+    background-color: coral;
+
+}
+
+.expense-detail-card{
+    margin: 30px;
+    background-color: darkgray;
+    width: 300px;
+   
+}
+
+.mat-raised-button {
+    background-color: aliceblue;
+    width: 400px;
+}
+
+.expense-details{
+    display: flex; /* Enable flexbox layout */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line when necessary */
+}

@@ -1,1 +1,5 @@
-<p>expenses works!</p>
+<div *ngIf="allExpenseList">
+
+    <app-expense-details *ngFor="let group of allGroups " [group]="group" [allExpense]="allExpenseList"></app-expense-details>
+   
+  </div>

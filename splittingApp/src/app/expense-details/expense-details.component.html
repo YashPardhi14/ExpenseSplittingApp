@@ -1,0 +1,30 @@
+<mat-card class="group-card">
+    <mat-card-header>
+      <mat-card-title>{{ group.groupName }}</mat-card-title>
+      <mat-card-subtitle>Total Expense:₹ {{ group.totalExpense}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions class="button-container">
+     
+      <button mat-raised-button (click)="filterTheGroupByGroupId(group.id)"> Show All Expenses</button>
+    </mat-card-actions>
+    <mat-card-content *ngIf="showExpense">
+
+<button mat-raised-button (click)="hideExpenses()">Hide</button>
+
+<div class="expense-details">
+    <mat-card class="expense-detail-card" *ngFor="let filterExpense of filteredExpensesByGroupId ">
+        <mat-card-header>
+          <mat-card-title> Paid By:<mat-card-subtitle>{{filterExpense.user.name}}</mat-card-subtitle></mat-card-title>
+          <mat-card-title> Description:<mat-card-subtitle>{{filterExpense.description}}</mat-card-subtitle></mat-card-title>
+          <mat-card-title> Paid Amount:<mat-card-subtitle>{{filterExpense.amount}}</mat-card-subtitle></mat-card-title>
+          <mat-card-title> Paid On:<mat-card-subtitle>{{filterExpense.dateTime | date}}</mat-card-subtitle></mat-card-title>
+        </mat-card-header>
+
+    </mat-card>
+</div>
+     
+   
+
+     
+    </mat-card-content>
+  </mat-card>
