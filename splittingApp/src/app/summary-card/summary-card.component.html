@@ -1,0 +1,32 @@
+<mat-card class="group-card" >
+    <mat-card-header>
+      <mat-card-title>{{ group.groupName }}</mat-card-title>
+      <mat-card-subtitle>Total Expense:₹ {{ group.totalExpense | number:'1.0-2'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions class="button-container">
+     
+      <button mat-raised-button (click)="showSummarryOfGroup(group.id)"> Show Expense Summary</button>
+    </mat-card-actions>
+    <mat-card-content *ngIf="showSummary">
+
+     <button mat-raised-button (click)="hideSummary()">Hide</button>
+     <div class="expense-details">
+        <h2>Total Member:{{getGroupExpenseSummary?.members?.length}}</h2>
+        <mat-card class="expense-summary-card" *ngFor="let summary of getGroupExpenseSummary?.members">
+            <mat-card-header>
+              <mat-card-title> Name:<mat-card-subtitle>{{summary.memberName}}</mat-card-subtitle></mat-card-title>
+              <mat-card-title> Share:<mat-card-subtitle>{{summary.share | number:'1.0-2'}}</mat-card-subtitle></mat-card-title>
+              <mat-card-title> Amount Paid:<mat-card-subtitle>{{summary.amountPaid | number:'1.0-2'}}</mat-card-subtitle></mat-card-title>
+              <mat-card-title> {{summary.amountToBePaid===0?'Will get Back:' :'Will Pay:'}} <mat-card-subtitle>{{summary.amountToBePaid===0?+summary.amountOwed :+summary.amountToBePaid }} </mat-card-subtitle></mat-card-title>
+             
+            </mat-card-header>
+    
+        </mat-card>
+    </div>
+
+
+    </mat-card-content>
+
+    
+  </mat-card>
+

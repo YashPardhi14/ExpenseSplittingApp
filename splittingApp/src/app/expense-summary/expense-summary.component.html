@@ -1,1 +1,6 @@
-<p>expense-summary works!</p>
+<div *ngIf="allGroups" class="summary-group">
+
+
+  <app-summary-card *ngFor="let group of allGroups"  [group]="group"></app-summary-card>
+
+</div>

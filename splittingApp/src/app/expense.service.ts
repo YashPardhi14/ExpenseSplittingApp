@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { catchError, map, of } from 'rxjs';
 import { Groups } from './groups';
 import { Expenses } from './expenses';
+import { GroupSummary } from './group-summary';
 
 
 @Injectable({
@@ -19,6 +20,8 @@ USER_API="http://localhost:8080/api/users";
 GROUP_API="http://localhost:8080/api/groups";
 
 EXPENSE_API="http://localhost:8080/api/expenses";
+
+GROUP_SUMMAR_API="http://localhost:8080/api/group/summary";
 
 
 
@@ -55,6 +58,18 @@ fetchExpenses(): Observable<Expenses[]> {
         return of([]);
       })
     );
+}
+
+fetchGroupSummary(id:number):Observable<GroupSummary>{
+
+  return this.http.get<GroupSummary>(`${this.GROUP_SUMMAR_API}/${id}`)
+  .pipe(
+    catchError(error=>{
+      console.log('Error in fetching the Group expense summary',error);
+      return of();
+    })
+  )
+
 }
 
 
