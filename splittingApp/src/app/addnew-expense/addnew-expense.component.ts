@@ -13,11 +13,12 @@ import { ExpenseService } from '../expense.service';
 import { MatSnackBar, MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NewExpense } from '../new-expense';
+import { RouterLink,Router,RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-addnew-expense',
   standalone: true,
-  imports: [CommonModule,MatSnackBarModule,ReactiveFormsModule,MatCardModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatButtonModule],
+  imports: [CommonModule,MatSnackBarModule,RouterModule,ReactiveFormsModule,MatCardModule,MatFormFieldModule,MatInputModule,MatSelectModule,MatButtonModule,RouterLink],
   templateUrl: './addnew-expense.component.html',
   styleUrl: './addnew-expense.component.css'
 })
@@ -31,7 +32,7 @@ export class AddnewExpenseComponent implements OnInit{
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
-  constructor(private expenseService:ExpenseService,private fb: FormBuilder,private snackBar: MatSnackBar){
+  constructor(private expenseService:ExpenseService,private fb: FormBuilder,private router:Router){
     this.expenseForm = new FormGroup({
       userId: new FormControl('', Validators.required),
       groupId: new FormControl('', Validators.required),
@@ -85,14 +86,16 @@ const expenseData:NewExpense=this.expenseForm.value;
 
 this.expenseService.addNewExpense(expenseData).subscribe(
 
-  ()=>{this.expenseForm.reset();
-    this.snackBar.open('Expense added successfully!', 'Success');
+  ()=>{
+    this.expenseForm.reset();
+    console.log('hi,I am here!');
+    
     this.formVisibility();
-   },
-  (error)=>{
-
-  }
+    
+   }
 )
+
+this.router.navigate(['/view-expense-summary'])
 
     }
 

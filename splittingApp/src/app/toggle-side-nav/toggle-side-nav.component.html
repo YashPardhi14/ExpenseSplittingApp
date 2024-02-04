@@ -1,0 +1,15 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <button mat-button routerLink="/view-members">View Members</button>
+      <button mat-button routerLink="/view-groups">View Groups</button>
+      <button mat-button routerLink="/view-expenses">View Expenses</button>
+      <button mat-button routerLink="/view-expense-summary">View Expense Summary</button>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        Click Here!
+      </button>
+     
+    </div>
+  </mat-drawer-container>

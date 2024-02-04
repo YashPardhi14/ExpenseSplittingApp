@@ -5,11 +5,13 @@ import { Groups } from '../groups';
 import { CommonModule, KeyValuePipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { ExpenseDetailsComponent } from '../expense-details/expense-details.component';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-expenses',
   standalone: true,
-  imports: [CommonModule,MatCardModule,KeyValuePipe,ExpenseDetailsComponent],
+  imports: [CommonModule,MatCardModule,KeyValuePipe,ExpenseDetailsComponent,RouterLink,MatButtonModule],
   templateUrl: './expenses.component.html',
   styleUrl: './expenses.component.css'
 

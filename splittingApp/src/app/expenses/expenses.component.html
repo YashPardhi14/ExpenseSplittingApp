@@ -7,6 +7,8 @@
 
 <div class="expenses-group" *ngIf="allExpenseList">
 
+
+  <button mat-raised-button color="accent" routerLink="/view-add-expenseForm">Add New Expense</button>
     <app-expense-details *ngFor="let group of allGroups " [group]="group" [allExpense]="allExpenseList"></app-expense-details>
    
   </div>

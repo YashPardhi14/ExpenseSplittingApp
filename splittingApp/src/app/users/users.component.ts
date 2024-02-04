@@ -13,13 +13,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Groups } from '../groups';
 import { NewUser } from '../new-user';
+import { RouterLink,Router,RouterModule} from '@angular/router';
+
 
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [HttpClientModule,CommonModule,UserCardComponent,MatToolbarModule,MatButtonModule,ReactiveFormsModule,MatSelectModule
-    ,MatFormFieldModule,MatCardModule,MatInputModule
+  imports: [HttpClientModule,CommonModule,RouterModule,UserCardComponent,MatToolbarModule,MatButtonModule,ReactiveFormsModule,MatSelectModule
+    ,MatFormFieldModule,MatCardModule,MatInputModule,RouterLink
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
@@ -30,7 +32,7 @@ export class UsersComponent implements OnInit{
   showForm: boolean=false;
   groups: Groups[] = [];
 
-  constructor(private expenseService: ExpenseService,private fb: FormBuilder) {
+  constructor(private expenseService: ExpenseService,private fb: FormBuilder,private router:Router) {
     this.userForm = this.fb.group({
       userName: ['', Validators.required],
       groupId: ['',Validators.required] // No validator here, as it's populated from the dropdown
@@ -67,6 +69,7 @@ export class UsersComponent implements OnInit{
       .subscribe(() => {
         // Handle successful addition
         console.log('User added successfully!');
+        this.router.navigate(['/view-add-expenseForm'])
         // Clear form, display success message, etc.
       }, error => {
         // Handle error
