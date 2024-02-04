@@ -7,6 +7,7 @@ import { Groups } from './groups';
 import { Expenses } from './expenses';
 import { GroupSummary } from './group-summary';
 import { NewGroup } from './new-group';
+import { NewUser } from './new-user';
 
 
 @Injectable({
@@ -77,6 +78,10 @@ createNewGroup(newGroupData: NewGroup): Observable<any> {
   return this.http.post<any>(this.GROUP_API, newGroupData);
 }
 
+addMemberToGrup(newMember:NewUser):Observable<any>{
+
+  return this.http.post<any>(this.USER_API,newMember);
+}
 
 
 }

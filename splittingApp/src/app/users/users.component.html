@@ -3,6 +3,34 @@
     <mat-toolbar class="decorated-heading">
         <h2>Users</h2>
       </mat-toolbar>
+
+      <button mat-raised-button color="primary" (click)="showUserFrom()">Add Member</button>
+
+      <div class="NewUserForm" *ngIf="showForm">
+        <mat-card>
+          <mat-card-title>Add User to Group</mat-card-title>
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+              <mat-label>User Name</mat-label>
+              <input matInput formControlName="userName" required>
+            </mat-form-field>
+        
+            <mat-form-field appearance="outline">
+              <mat-label>Group</mat-label>
+              <mat-select formControlName="groupId">
+                <mat-option *ngIf="groups" disabled>Loading groups...</mat-option>
+                <mat-option *ngFor="let group of groups" [value]="group.id">
+                  {{ group.groupName }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        
+            <button mat-raised-button color="primary" type="submit" [disabled]="userForm.invalid">Add User</button>
+          </form>
+        </mat-card>
+
+
+      </div>
       
     <div class="members-grid"> <app-user-card [user]="user" *ngFor="let user of users"></app-user-card>
     </div>
