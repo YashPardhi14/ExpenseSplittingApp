@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-title>Add Expense</mat-card-title>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Select Group</mat-label>
+      <mat-select formControlName="groupId" (selectionChange)="onGroupSelected($event.value)">
+        <mat-option *ngIf="groups.length === 0" disabled>Loading groups...</mat-option>
+        <mat-option *ngFor="let group of groups" [value]="group.id">
+          {{ group.groupName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  <div *ngIf="showForm">
+    <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+          <mat-label>User Who Paid</mat-label>
+          <mat-select formControlName="userId">
+            <mat-option *ngIf="users.length === 0" disabled>Loading users...</mat-option>
+            <mat-option *ngFor="let user of filterUsers" [value]="user.id">
+              {{ user.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Amount Paid</mat-label>
+          <input matInput type="number" formControlName="paid" placeholder="0.00">
+        </mat-form-field>
+    
+        <mat-form-field appearance="outline">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+    
+        <button mat-raised-button color="primary" type="submit" [disabled]="expenseForm.invalid">Add Expense</button>
+      </form>
+  </div>
+   
+  </mat-card>
+  

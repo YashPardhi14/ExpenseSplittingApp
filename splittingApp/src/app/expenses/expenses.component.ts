@@ -18,7 +18,7 @@ export class ExpensesComponent implements OnInit {
 
   allExpenseList:Expenses[] |undefined;
 allGroups:Groups[] | undefined;
-
+showForm:boolean=false;
 filteredExpensesByGroupId:Expenses[]|undefined;
 showExpense:boolean=false;
 
