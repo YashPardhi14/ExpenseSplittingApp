@@ -5,11 +5,11 @@
     </mat-card-header>
     <mat-card-actions class="button-container">
      
-      <button mat-raised-button (click)="filterTheGroupByGroupId(group.id)"> Show All Expenses</button>
+      <button mat-raised-button color="primary" (click)="filterTheGroupByGroupId(group.id)"> Show All Expenses</button>
     </mat-card-actions>
     <mat-card-content *ngIf="showExpense">
 
-<button mat-raised-button (click)="hideExpenses()">Hide</button>
+<button mat-raised-button color="primary" (click)="hideExpenses()">Hide</button>
 
 <div class="expense-details">
     <mat-card class="expense-detail-card" *ngFor="let filterExpense of filteredExpensesByGroupId ">

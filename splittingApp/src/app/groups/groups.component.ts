@@ -4,18 +4,29 @@ import { ExpenseService } from '../expense.service';
 import { GroupCardComponent } from '../group-card/group-card.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
-
+import { MatButtonModule } from '@angular/material/button';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NewGroup } from '../new-group';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-groups',
   standalone: true,
-  imports: [GroupCardComponent,MatToolbarModule,CommonModule],
+  imports: [GroupCardComponent,MatInputModule,MatFormFieldModule,MatToolbarModule,CommonModule,MatButtonModule,ReactiveFormsModule,MatCardModule],
   templateUrl: './groups.component.html',
   styleUrl: './groups.component.css'
 })
 export class GroupsComponent implements OnInit {
   groups: Groups[] = [];
+  showForm:boolean=false;
+  groupForm: FormGroup;
+  constructor(private expenseService: ExpenseService,private fb: FormBuilder) {
 
-  constructor(private expenseService: ExpenseService) {}
+    this.groupForm = this.fb.group({
+      groupName: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
     
@@ -27,5 +38,20 @@ export class GroupsComponent implements OnInit {
 
 }
 
+onSubmit() {
+  const newGroupData: NewGroup = this.groupForm.value;
+  this.expenseService.createNewGroup(newGroupData)
+    .subscribe(() => {
+      // Handle successful group creation
+      // Clear form, display success message, etc.
+    }, error => {
+      // Handle any errors
+      console.error(error);
+    });
+   this.showNewGroupForm();
+}
+showNewGroupForm(){
+  this.showForm=!this.showForm;
+}
 
 }

@@ -6,6 +6,7 @@ import { catchError, map, of } from 'rxjs';
 import { Groups } from './groups';
 import { Expenses } from './expenses';
 import { GroupSummary } from './group-summary';
+import { NewGroup } from './new-group';
 
 
 @Injectable({
@@ -70,6 +71,10 @@ fetchGroupSummary(id:number):Observable<GroupSummary>{
     })
   )
 
+}
+
+createNewGroup(newGroupData: NewGroup): Observable<any> {
+  return this.http.post<any>(this.GROUP_API, newGroupData);
 }
 
 

@@ -5,11 +5,11 @@
     </mat-card-header>
     <mat-card-actions class="button-container">
      
-      <button mat-raised-button (click)="showSummarryOfGroup(group.id)"> Show Expense Summary</button>
+      <button mat-raised-button color="primary"(click)="showSummarryOfGroup(group.id)"> Show Expense Summary</button>
     </mat-card-actions>
     <mat-card-content *ngIf="showSummary">
 
-     <button mat-raised-button (click)="hideSummary()">Hide</button>
+     <button mat-raised-button color="primary" (click)="hideSummary()">Hide</button>
      <div class="expense-details">
         <h2>Total Member:{{getGroupExpenseSummary?.members?.length}}</h2>
         <mat-card class="expense-summary-card" *ngFor="let summary of getGroupExpenseSummary?.members">

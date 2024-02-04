@@ -3,7 +3,23 @@
     <mat-toolbar class="decorated-heading">
         <h2>All Groups</h2>
       </mat-toolbar>
-      
+      <button mat-raised-button color="accent" (click)="showNewGroupForm()">Add New Group</button>
+
+      <div *ngIf="showForm">
+
+        <mat-card>
+          <mat-card-title>Create Group</mat-card-title>
+          <form [formGroup]="groupForm" (ngSubmit)="onSubmit()">
+            <mat-form-field appearance="outline">
+              <mat-label>Group Name</mat-label>
+              <input matInput formControlName="groupName" required>
+            </mat-form-field>
+            <button mat-raised-button color="accent" type="submit" [disabled]="groupForm.invalid">Create Group</button>
+          </form>
+        </mat-card>
+
+      </div>
+
     <div class="groups-grid"> 
         <app-group-card [group]="group" *ngFor="let group of groups"></app-group-card>
     </div>
